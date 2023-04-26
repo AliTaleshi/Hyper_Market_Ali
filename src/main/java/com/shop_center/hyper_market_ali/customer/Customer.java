@@ -1,4 +1,4 @@
-package com.shop_center.hyper_market_ali;
+package com.shop_center.hyper_market_ali.customer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
