@@ -20,9 +20,6 @@ public class CustomerController {
     @Autowired
     private final CustomerService customerService;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
@@ -46,21 +43,21 @@ public class CustomerController {
         customer.setName(request.name());
         customer.setEmail(request.email());
         customer.setAge(request.age());
-        customerRepository.save(customer);
+        customerService.saveCustomer(customer);
     }
 
     @DeleteMapping("{customerId}")
     public void deleteCustomer(@PathVariable("customerId") Integer id) {
-        customerRepository.deleteById(id);
+        customerService.deleteCustomerById(id);
     }
 
     @PutMapping("{customerId}")
     public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody NewCustomerRequest request) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        Optional<Customer> optionalCustomer = customerService.findCustomerById(id);
         Customer customer = optionalCustomer.get();
         customer.setName(request.name());
         customer.setEmail(request.email());
         customer.setAge(request.age());
-        customerRepository.save(customer);
+        customerService.saveCustomer(customer);
     }
 }
