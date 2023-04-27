@@ -14,15 +14,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping(path = "api/v1/customer")
+@RequestMapping(path = "api/v1/customers")
 public class CustomerController {
+
+    @Autowired
+    private final CustomerService customerService;
 
     @Autowired
     private CustomerRepository customerRepository;
 
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
     @GetMapping
     public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+        return customerService.getCustomers();
     }
 
     /**
