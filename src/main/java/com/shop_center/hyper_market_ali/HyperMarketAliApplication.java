@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.shop_center.hyper_market_ali.customer.Customer;
 import com.shop_center.hyper_market_ali.customer.CustomerRepository;
 
 @SpringBootApplication
-@RestController
-@RequestMapping("api/v1/customers")
 public class HyperMarketAliApplication {
 
 	@Autowired
