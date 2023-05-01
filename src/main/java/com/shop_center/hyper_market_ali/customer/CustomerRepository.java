@@ -1,8 +1,13 @@
 package com.shop_center.hyper_market_ali.customer;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface CustomerRepository
-                extends JpaRepository<Customer, Integer> {
+        extends JpaRepository<Customer, Integer> {
 
+    @Query("SELECT c FROM Customer c WHERE c.email = ?1")
+    Optional<Customer> findCustomerByEmail(String email);
 }
