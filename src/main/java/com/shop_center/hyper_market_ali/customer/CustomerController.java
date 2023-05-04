@@ -43,7 +43,7 @@ public class CustomerController {
         customer.setName(request.name());
         customer.setEmail(request.email());
         customer.setAge(request.age());
-        customerService.saveCustomer(customer);
+        customerService.addCustomer(customer);
     }
 
     @DeleteMapping("{customerId}")
