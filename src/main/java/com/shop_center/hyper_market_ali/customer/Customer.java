@@ -1,6 +1,5 @@
 package com.shop_center.hyper_market_ali.customer;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +14,6 @@ public class Customer {
     @Id
     @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
-    @Column()
     Integer id;
     String name;
     String email;
