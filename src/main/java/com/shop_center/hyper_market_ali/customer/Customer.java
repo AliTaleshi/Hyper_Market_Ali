@@ -1,9 +1,15 @@
 package com.shop_center.hyper_market_ali.customer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.shop_center.hyper_market_ali.order.Order;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -14,41 +20,57 @@ public class Customer {
     @Id
     @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
-    Integer id;
-    String name;
-    String email;
-    Integer age;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
 
-    public Customer(Integer id, String name, String email, Integer age) {
+    @OneToMany(mappedBy = "customer", cascade = jakarta.persistence.CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+    public Customer(Long id, String firstName, String lastName, String email, String phoneNumber, List<Order> orders) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.orders = orders;
     }
 
-    public Customer(String name, String email, Integer age) {
-        this.name = name;
+    public Customer(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.orders = null;
     }
 
     public Customer() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -59,17 +81,26 @@ public class Customer {
         this.email = email;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", age=" + age + "]";
+        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+                + ", phoneNumber=" + phoneNumber + ", orders=" + orders + "]";
     }
 
     @Override
@@ -77,9 +108,11 @@ public class Customer {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((age == null) ? 0 : age.hashCode());
+        result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+        result = prime * result + ((orders == null) ? 0 : orders.hashCode());
         return result;
     }
 
@@ -97,20 +130,30 @@ public class Customer {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (firstName == null) {
+            if (other.firstName != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!firstName.equals(other.firstName))
+            return false;
+        if (lastName == null) {
+            if (other.lastName != null)
+                return false;
+        } else if (!lastName.equals(other.lastName))
             return false;
         if (email == null) {
             if (other.email != null)
                 return false;
         } else if (!email.equals(other.email))
             return false;
-        if (age == null) {
-            if (other.age != null)
+        if (phoneNumber == null) {
+            if (other.phoneNumber != null)
                 return false;
-        } else if (!age.equals(other.age))
+        } else if (!phoneNumber.equals(other.phoneNumber))
+            return false;
+        if (orders == null) {
+            if (other.orders != null)
+                return false;
+        } else if (!orders.equals(other.orders))
             return false;
         return true;
     }

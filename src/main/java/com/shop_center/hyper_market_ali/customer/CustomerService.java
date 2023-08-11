@@ -26,11 +26,11 @@ public class CustomerService {
     }
 
     @Transactional
-    public void updateCustomer(Integer customerId, String name, String email, Integer age) {
+    public void updateCustomer(Long customerId, String name, String email, Integer age) {
 
     }
 
-    public void deleteCustomerById(Integer id) {
+    public void deleteCustomerById(Long id) {
         boolean exists = customerRepository.existsById(id);
         if (!exists) {
             throw new IllegalStateException("customer with id " + id + " doesn't exist!");
@@ -39,7 +39,7 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public Optional<Customer> findCustomerById(Integer id) {
+    public Optional<Customer> findCustomerById(Long id) {
         Optional<Customer> customerOptional = customerRepository.findById(id);
         if (!customerOptional.isPresent()) {
             throw new IllegalStateException("customer with id " + id + " doesn't exist!");

@@ -32,24 +32,26 @@ public class CustomerController {
     @PostMapping
     public void addCustomer(@RequestBody Customer request) {
         Customer customer = new Customer();
-        customer.setName(request.getName());
+        customer.setFirstName(request.getFirstName());
+        customer.setLastName(request.getLastName());
         customer.setEmail(request.getEmail());
-        customer.setAge(request.getAge());
+        customer.setPhoneNumber(request.getPhoneNumber());
         customerService.addCustomer(customer);
     }
 
     @DeleteMapping("{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Integer id) {
+    public void deleteCustomer(@PathVariable("customerId") Long id) {
         customerService.deleteCustomerById(id);
     }
 
     @PutMapping("{customerId}")
-    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody Customer request) {
+    public void updateCustomer(@PathVariable("customerId") Long id, @RequestBody Customer request) {
         Optional<Customer> optionalCustomer = customerService.findCustomerById(id);
         Customer customer = optionalCustomer.get();
-        customer.setName(request.getName());
+        customer.setFirstName(request.getFirstName());
+        customer.setLastName(request.getLastName());
         customer.setEmail(request.getEmail());
-        customer.setAge(request.getAge());
-        customerService.saveCustomer(customer);
+        customer.setPhoneNumber(request.getPhoneNumber());
+        customerService.addCustomer(customer);
     }
 }

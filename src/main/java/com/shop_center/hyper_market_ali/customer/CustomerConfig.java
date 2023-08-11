@@ -14,13 +14,15 @@ public class CustomerConfig {
         return arge -> {
             Customer customer1 = new Customer(
                     "Alex",
+                    "Mason",
                     "alex@gmail.com",
-                    25);
+                    "09123252496");
 
             Customer customer2 = new Customer(
                     "Sam",
+                    "Jackson",
                     "sam@gmail.com",
-                    65);
+                    "09124250945");
 
             customerRepository.saveAll(List.of(customer1, customer2));
         };
