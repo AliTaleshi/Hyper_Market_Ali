@@ -1,8 +1,13 @@
 package com.shop_center.hyper_market_ali.product;
 
+import com.shop_center.hyper_market_ali.category.Category;
+import com.shop_center.hyper_market_ali.order.Order;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
