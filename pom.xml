@@ -14,7 +14,7 @@
 	<name>hyper_market_ali</name>
 	<description>A project to handle the tasks for a hypermarket.</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 
@@ -59,7 +59,7 @@
 		<dependency>
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
-    		<version>42.2.23</version>
+    		<version>15.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>

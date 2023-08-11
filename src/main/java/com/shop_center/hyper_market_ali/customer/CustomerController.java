@@ -29,20 +29,12 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    /**
-     * NewCustomerRequest
-     * String name, String email, Integer age
-     */
-    public record NewCustomerRequest(
-            String name, String email, Integer age) {
-    }
-
     @PostMapping
-    public void addCustomer(@RequestBody NewCustomerRequest request) {
+    public void addCustomer(@RequestBody Customer request) {
         Customer customer = new Customer();
-        customer.setName(request.name());
-        customer.setEmail(request.email());
-        customer.setAge(request.age());
+        customer.setName(request.getName());
+        customer.setEmail(request.getEmail());
+        customer.setAge(request.getAge());
         customerService.addCustomer(customer);
     }
 
@@ -52,12 +44,12 @@ public class CustomerController {
     }
 
     @PutMapping("{customerId}")
-    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody NewCustomerRequest request) {
+    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody Customer request) {
         Optional<Customer> optionalCustomer = customerService.findCustomerById(id);
         Customer customer = optionalCustomer.get();
-        customer.setName(request.name());
-        customer.setEmail(request.email());
-        customer.setAge(request.age());
+        customer.setName(request.getName());
+        customer.setEmail(request.getEmail());
+        customer.setAge(request.getAge());
         customerService.saveCustomer(customer);
     }
 }
