@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -26,8 +27,29 @@ public class CustomerService {
     }
 
     @Transactional
-    public void updateCustomer(Long customerId, String name, String email, Integer age) {
+    public void updateCustomer(Long customerId, String firstName, String lastName, String email, String phoneNumber) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
 
+        if (optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+
+            if (firstName != null) {
+                customer.setFirstName(firstName);
+            }
+            if (lastName != null) {
+                customer.setLastName(lastName);
+            }
+            if (email != null) {
+                customer.setEmail(email);
+            }
+            if (phoneNumber != null) {
+                customer.setPhoneNumber(phoneNumber);
+            }
+
+            customerRepository.save(customer);
+        } else {
+            throw new EntityNotFoundException("Customer with ID " + customerId + " not found");
+        }
     }
 
     public void deleteCustomerById(Long id) {
