@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @RequestMapping(path = "api/v1/customers")
@@ -46,12 +45,7 @@ public class CustomerController {
 
     @PutMapping("{customerId}")
     public void updateCustomer(@PathVariable("customerId") Long id, @RequestBody Customer request) {
-        Optional<Customer> optionalCustomer = customerService.findCustomerById(id);
-        Customer customer = optionalCustomer.get();
-        customer.setFirstName(request.getFirstName());
-        customer.setLastName(request.getLastName());
-        customer.setEmail(request.getEmail());
-        customer.setPhoneNumber(request.getPhoneNumber());
-        customerService.addCustomer(customer);
+        customerService.updateCustomer(id, request.getFirstName(), request.getLastName(), request.getEmail(),
+                request.getPhoneNumber());
     }
 }
