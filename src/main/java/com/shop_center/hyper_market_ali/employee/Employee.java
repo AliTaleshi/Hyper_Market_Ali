@@ -22,14 +22,14 @@ public class Employee {
     private String email;
     private String phoneNumber;
     private String role;
-    private double salary;
+    private Double salary;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
     public Employee(Long id, String firstName, String lastName, String email, String phoneNumber, String role,
-            double salary, Address address) {
+            Double salary, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,11 +88,11 @@ public class Employee {
         this.role = role;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
