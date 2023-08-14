@@ -13,17 +13,17 @@ public class EmployeeConfig {
     CommandLineRunner commandLineRunner(EmployeeRepository employeeRepository) {
         return arge -> {
             Employee employee1 = new Employee(
-                    "Alex",
-                    "Mason",
-                    "alex@gmail.com",
+                    "Ali",
+                    "Mmdi",
+                    "ali@gmail.com",
                     "09126552496",
                     "Cashier",
                     1400.0);
 
             Employee employee2 = new Employee(
-                    "Sam",
-                    "Jackson",
-                    "sam@gmail.com",
+                    "Salar",
+                    "Salari",
+                    "salar@gmail.com",
                     "09124250985",
                     "Cashier",
                     1400.0);
