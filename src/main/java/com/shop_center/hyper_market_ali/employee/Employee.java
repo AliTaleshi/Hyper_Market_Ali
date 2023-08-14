@@ -40,6 +40,16 @@ public class Employee {
         this.address = address;
     }
 
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String role,
+            Double salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.salary = salary;
+    }
+
     public Long getId() {
         return id;
     }
