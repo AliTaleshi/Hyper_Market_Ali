@@ -3,9 +3,12 @@ package com.shop_center.hyper_market_ali.employee;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+@Service
 public class EmployeeService {
 
     private EmployeeRepository employeeRepository;

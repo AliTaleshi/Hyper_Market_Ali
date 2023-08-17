@@ -1,6 +1,6 @@
 package com.shop_center.hyper_market_ali.employee;
 
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
+import com.shop_center.hyper_market_ali.address.Address;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
