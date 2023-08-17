@@ -1,6 +1,5 @@
 package com.shop_center.hyper_market_ali.user;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,17 +18,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
-        // Perform validation on newUser fields (e.g., username uniqueness, password
-        // strength)
-
-        // Create a new user
-        User createdUser = userService.registerUser(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
-
-        if (createdUser != null) {
-            return ResponseEntity.ok("User registered successfully");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Registration failed");
-        }
+        return userService.registerUser(newUser);
     }
 
     // Other authentication methods...

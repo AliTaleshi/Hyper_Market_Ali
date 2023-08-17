@@ -1,5 +1,6 @@
 package com.shop_center.hyper_market_ali.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,12 @@ public class UserService {
     }
 
     public ResponseEntity<String> registerUser(User newUser) {
-        // Validate user input fields
+
         ResponseEntity<String> validationResponse = validateUserFields(newUser);
         if (validationResponse != null) {
             return validationResponse;
         }
 
-        // Check if username or email is already taken
         if (isUsernameTaken(newUser.getUsername())) {
             return ResponseEntity.badRequest().body("Username already taken.");
         }
@@ -27,8 +27,6 @@ public class UserService {
             return ResponseEntity.badRequest().body("Email already in use.");
         }
 
-        // Perform any additional steps (e.g., password hashing, email verification)
-        // before saving the user to the repository
         User createdUser = userRepository.save(newUser);
 
         if (createdUser != null) {
@@ -46,12 +44,23 @@ public class UserService {
         }
 
         // Perform additional validation if needed
-        if (!isValidEmail(user.getEmail())) {
+        if (!isEmailTaken(user.getEmail())) {
             return ResponseEntity.badRequest().body("Invalid email format.");
         }
 
         return null; // No validation issues
     }
 
-    // Other methods...
+    public boolean isUsernameTaken(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    public boolean isEmailTaken(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public boolean isEmailValid(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+
 }
