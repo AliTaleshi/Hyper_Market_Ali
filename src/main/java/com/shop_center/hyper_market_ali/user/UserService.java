@@ -14,7 +14,6 @@ public class UserService {
     }
 
     public ResponseEntity<String> registerUser(User newUser) {
-
         ResponseEntity<String> validationResponse = validateUserFields(newUser);
         if (validationResponse != null) {
             return validationResponse;
@@ -26,6 +25,9 @@ public class UserService {
         if (isEmailTaken(newUser.getEmail())) {
             return ResponseEntity.badRequest().body("Email already in use.");
         }
+
+        String hashedPassword = hashPassword(newUser.getPassword());
+        newUser.setPassword(hashedPassword);
 
         User createdUser = userRepository.save(newUser);
 
@@ -42,8 +44,6 @@ public class UserService {
                 user.getPassword() == null || user.getPassword().isEmpty()) {
             return ResponseEntity.badRequest().body("Username, email, and password are required.");
         }
-
-        // Perform additional validation if needed
         if (!isEmailTaken(user.getEmail())) {
             return ResponseEntity.badRequest().body("Invalid email format.");
         }

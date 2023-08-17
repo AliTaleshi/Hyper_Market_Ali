@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class UserController {
 
     private final UserService userService;
 
-    public AuthController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -20,6 +20,4 @@ public class AuthController {
     public ResponseEntity<String> registerUser(@RequestBody User newUser) {
         return userService.registerUser(newUser);
     }
-
-    // Other authentication methods...
 }
