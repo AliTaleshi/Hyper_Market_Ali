@@ -1,66 +1,84 @@
 package com.shop_center.hyper_market_ali.product;
 
 import com.shop_center.hyper_market_ali.category.Category;
-import com.shop_center.hyper_market_ali.order.Order;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @SequenceGenerator(name = "product_id_seqeunce", sequenceName = "product_id_seqeunce", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_sequence")
+    private Long productId;
 
-    private String name;
-    private double price;
+    @Column(unique = true)
+    private String stockKeepingUnit;
+
+    private String description;
+    private Double price;
+    private Integer stock;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "categoryId")
     private Category category;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders = new ArrayList<>();
-
-    public Product(Long id, String name, double price, Category category, List<Order> orders) {
-        this.id = id;
-        this.name = name;
+    public Product(String stockKeepingUnit, String description, Double price, Integer stock, Category category) {
+        this.stockKeepingUnit = stockKeepingUnit;
+        this.description = description;
         this.price = price;
+        this.stock = stock;
         this.category = category;
-        this.orders = orders;
     }
 
-    public Long getId() {
-        return id;
+    public Product() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public String getName() {
-        return name;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getStockKeepingUnit() {
+        return stockKeepingUnit;
     }
 
-    public double getPrice() {
+    public void setStockKeepingUnit(String stockKeepingUnit) {
+        this.stockKeepingUnit = stockKeepingUnit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Category getCategory() {
@@ -69,68 +87,6 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", orders="
-                + orders + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(price);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((category == null) ? 0 : category.hashCode());
-        result = prime * result + ((orders == null) ? 0 : orders.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Product other = (Product) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
-            return false;
-        if (category == null) {
-            if (other.category != null)
-                return false;
-        } else if (!category.equals(other.category))
-            return false;
-        if (orders == null) {
-            if (other.orders != null)
-                return false;
-        } else if (!orders.equals(other.orders))
-            return false;
-        return true;
     }
 
 }

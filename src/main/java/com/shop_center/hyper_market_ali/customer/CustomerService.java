@@ -28,10 +28,10 @@ public class CustomerService {
 
     @Transactional
     public void updateCustomer(Long customerId, String firstName, String lastName, String email, String phoneNumber) {
-        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
-        if (optionalCustomer.isPresent()) {
-            Customer customer = optionalCustomer.get();
+        if (customerOptional.isPresent()) {
+            Customer customer = customerOptional.get();
 
             if (firstName != null) {
                 customer.setFirstName(firstName);
@@ -52,19 +52,19 @@ public class CustomerService {
         }
     }
 
-    public void deleteCustomerById(Long id) {
-        boolean exists = customerRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("customer with id " + id + " doesn't exist!");
+    public void deleteCustomerById(Long customerId) {
+
+        if (!customerRepository.existsById(customerId)) {
+            throw new EntityNotFoundException("Customer with ID " + customerId + " not found");
         }
 
-        customerRepository.deleteById(id);
+        customerRepository.deleteById(customerId);
     }
 
-    public Optional<Customer> findCustomerById(Long id) {
-        Optional<Customer> customerOptional = customerRepository.findById(id);
-        if (!customerOptional.isPresent()) {
-            throw new IllegalStateException("customer with id " + id + " doesn't exist!");
+    public Optional<Customer> findCustomerById(Long customerId) {
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+        if (customerOptional.isEmpty()) {
+            throw new EntityNotFoundException("Customer with ID " + customerId + " not found");
         }
 
         return customerOptional;

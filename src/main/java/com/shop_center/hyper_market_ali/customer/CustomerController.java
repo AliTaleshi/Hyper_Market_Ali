@@ -1,6 +1,5 @@
 package com.shop_center.hyper_market_ali.customer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping(path = "api/v1/customers")
 public class CustomerController {
 
-    @Autowired
+    // @Autowired
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
@@ -39,13 +38,13 @@ public class CustomerController {
     }
 
     @DeleteMapping("{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") Long id) {
-        customerService.deleteCustomerById(id);
+    public void deleteCustomer(@PathVariable("customerId") Long customerId) {
+        customerService.deleteCustomerById(customerId);
     }
 
     @PutMapping("{customerId}")
-    public void updateCustomer(@PathVariable("customerId") Long id, @RequestBody Customer request) {
-        customerService.updateCustomer(id, request.getFirstName(), request.getLastName(), request.getEmail(),
+    public void updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody Customer request) {
+        customerService.updateCustomer(customerId, request.getFirstName(), request.getLastName(), request.getEmail(),
                 request.getPhoneNumber());
     }
 }
