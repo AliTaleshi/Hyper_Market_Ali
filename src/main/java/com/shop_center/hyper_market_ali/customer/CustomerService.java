@@ -22,9 +22,9 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void saveCustomer(Customer customer) {
-        customerRepository.save(customer);
-    }
+    // public void saveCustomer(Customer customer) {
+    // customerRepository.save(customer);
+    // }
 
     @Transactional
     public void updateCustomer(Long customerId, String firstName, String lastName, String email, String phoneNumber) {
