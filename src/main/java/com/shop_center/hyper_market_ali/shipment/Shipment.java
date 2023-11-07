@@ -46,7 +46,7 @@ public class Shipment {
     }
 
     public Date getShipmentDate() {
-        return shipmentDate;
+        return this.shipmentDate;
     }
 
     public void setShipmentDate(Date shipmentDate) {

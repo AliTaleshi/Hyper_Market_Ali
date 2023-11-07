@@ -1,6 +1,6 @@
 package com.shop_center.hyper_market_ali.shipment;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,14 +77,15 @@ public class ShipmentService {
         shipmentRepository.deleteById(shipmentId);
     }
 
-    public Optional<Shipment> findShipmentById(Long shipmentId) {
-        Optional<Shipment> shipmentOptional = shipmentRepository.findById(shipmentId);
-        if (shipmentOptional.isEmpty()) {
-            throw new EntityNotFoundException("Product with ID " + shipmentId);
-        }
+    // public Optional<Shipment> findShipmentById(Long shipmentId) {
+    // Optional<Shipment> shipmentOptional =
+    // shipmentRepository.findById(shipmentId);
+    // if (shipmentOptional.isEmpty()) {
+    // throw new EntityNotFoundException("Product with ID " + shipmentId);
+    // }
 
-        return shipmentOptional;
-    }
+    // return shipmentOptional;
+    // }
 
     public void addShipment(Shipment shipment, Long customerId) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
