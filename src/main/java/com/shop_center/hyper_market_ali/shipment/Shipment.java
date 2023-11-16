@@ -1,18 +1,15 @@
 package com.shop_center.hyper_market_ali.shipment;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.shop_center.hyper_market_ali.customer.Customer;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 @Entity
 public class Shipment {
@@ -21,11 +18,7 @@ public class Shipment {
     @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     private Long shipmentId;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "shipment_date")
-    private Date shipmentDate;
-
+    private LocalDateTime shipmentDate;
     private String address;
     private String city;
     private String county;
@@ -37,6 +30,16 @@ public class Shipment {
     public Shipment() {
     }
 
+    public Shipment(LocalDateTime shipmentDate, String address, String city, String county, String country,
+            Customer customer) {
+        this.shipmentDate = shipmentDate;
+        this.address = address;
+        this.city = city;
+        this.county = county;
+        this.country = country;
+        this.customer = customer;
+    }
+
     public Long getShipmentId() {
         return shipmentId;
     }
@@ -45,11 +48,11 @@ public class Shipment {
         this.shipmentId = shipmentId;
     }
 
-    public Date getShipmentDate() {
+    public LocalDateTime getShipmentDate() {
         return this.shipmentDate;
     }
 
-    public void setShipmentDate(Date shipmentDate) {
+    public void setShipmentDate(LocalDateTime shipmentDate) {
         this.shipmentDate = shipmentDate;
     }
 
