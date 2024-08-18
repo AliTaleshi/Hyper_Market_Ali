@@ -1,6 +1,5 @@
 package com.shop_center.hyper_market_ali.user;
 
-import com.shop_center.hyper_market_ali.customer.Customer;
 import com.shop_center.hyper_market_ali.user.user_role.UserRole;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
