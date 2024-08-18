@@ -9,7 +9,7 @@ public class User {
 
     @Id
     @SequenceGenerator(name = "user_id_sequence", sequenceName = "user_id_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userr_id_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_sequence")
     private Long userId;
     private String userName;
     private String passWord;
@@ -39,11 +39,19 @@ public class User {
         this.passWord = passWord;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
-
     public UserRole getUserRole() {
         return userRole;
+    }
+
+    public void setUserRoleToAdmin(UserRole userRole) {
+        this.userRole = userRole.ADMIN;
+    }
+
+    public void setUserRoleToCustomer(UserRole userRole) {
+        this.userRole = userRole.CUSTOMER;
+    }
+
+    public void setUserRoleToJustVisiting(UserRole userRole) {
+        this.userRole = userRole.JUSTVISITING;
     }
 }
