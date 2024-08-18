@@ -1,5 +1,6 @@
 package com.shop_center.hyper_market_ali.user;
 
+import com.shop_center.hyper_market_ali.user.user_role.UserRole;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class User {
     private Long userId;
     private String userName;
     private String passWord;
-    private Role userRole;
+    private UserRole userRole;
 
     public Long getUserId() {
         return userId;
@@ -38,11 +39,11 @@ public class User {
         this.passWord = passWord;
     }
 
-    public void setUserRole(Role userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 
-    public Role getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 }
