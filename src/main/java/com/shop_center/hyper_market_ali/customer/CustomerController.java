@@ -2,7 +2,6 @@ package com.shop_center.hyper_market_ali.customer;
 
 import com.shop_center.hyper_market_ali.HyperMarketAliApplication;
 import org.slf4j.LoggerFactory;
-import org.slf4j.LoggerFactoryFriend;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +28,7 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> getCustomers() {
+        log.info("Customers listed");
         return customerService.getCustomers();
     }
 
@@ -41,16 +41,19 @@ public class CustomerController {
         customer.setEmail(request.getEmail());
         customer.setPhoneNumber(request.getPhoneNumber());
         customerService.addCustomer(customer);
+        log.info("Customer created with id {}", request.getCustomerId());
     }
 
     @DeleteMapping("{customerId}")
     public void deleteCustomer(@PathVariable("customerId") Long customerId) {
         customerService.deleteCustomerById(customerId);
+        log.info("Customer deleted with id {}", customerId);
     }
 
     @PutMapping("{customerId}")
     public void updateCustomer(@PathVariable("customerId") Long customerId, @RequestBody Customer request) {
         customerService.updateCustomer(customerId, request.getFirstName(), request.getLastName(), request.getEmail(),
                 request.getPhoneNumber());
+        log.info("Customer is updated with id {}", customerId);
     }
 }
