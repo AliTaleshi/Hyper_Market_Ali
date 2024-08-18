@@ -10,4 +10,7 @@ public interface CustomerRepository
 
     @Query("SELECT c FROM Customer c WHERE c.email = ?1")
     Optional<Customer> findCustomerByEmail(String email);
+
+    @Query("SELECT c FROM Customer c WHERE c.userName = ?1")
+    Optional<Customer> findCustomerByUserName(String userName);
 }
