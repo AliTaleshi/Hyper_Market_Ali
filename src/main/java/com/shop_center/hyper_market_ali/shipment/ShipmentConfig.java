@@ -3,6 +3,7 @@ package com.shop_center.hyper_market_ali.shipment;
 import java.util.Date;
 import java.util.List;
 
+import com.shop_center.hyper_market_ali.product.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,9 +16,11 @@ import com.shop_center.hyper_market_ali.product.Product;
 public class ShipmentConfig {
 
     private final ShipmentRepository shipmentRepository;
+    private final ProductRepository productRepository;
 
-    public ShipmentConfig(ShipmentRepository shipmentRepository) {
+    public ShipmentConfig(ShipmentRepository shipmentRepository, ProductRepository productRepository) {
         this.shipmentRepository = shipmentRepository;
+        this.productRepository = productRepository;
     }
 
     @Bean(name = "shipmentCommandLineRunner")
@@ -36,14 +39,14 @@ public class ShipmentConfig {
                         "sam@gmail.com",
                         "09124250945");
 
-                Shipment shipment1 = new Shipment(
-                    1,
-                    
-                );
-
-                Shipment shipment2 = new Shipment();
-
-                productRepository.saveAll(List.of(product1, product2));
+//                Shipment shipment1 = new Shipment(
+//                    1,
+//
+//                );
+//
+//                Shipment shipment2 = new Shipment();
+//
+//                productRepository.saveAll(List.of(product1, product2));
             } catch (Exception e) {
                 System.err.println("Error populating initial data: " + e.getMessage());
             }

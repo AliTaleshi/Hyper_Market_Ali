@@ -2,6 +2,7 @@ package com.shop_center.hyper_market_ali.category;
 
 import java.util.List;
 import java.util.Optional;
+import slfjd
 
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ public class CategoryService {
             }
 
             categoryRepository.save(category);
+            log.info
         } else {
             throw new EntityNotFoundException("Category with ID " + categoryId + " not found");
         }

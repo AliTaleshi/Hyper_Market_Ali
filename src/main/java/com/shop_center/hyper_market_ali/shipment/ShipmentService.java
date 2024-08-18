@@ -1,6 +1,6 @@
 package com.shop_center.hyper_market_ali.shipment;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +28,8 @@ public class ShipmentService {
     }
 
     @Transactional
-    public void updateShipment(Long shipmentId, Date shipmentDate, String address, String city, String county,
-            String country, Long customerId) {
+    public void updateShipment(Long shipmentId, LocalDateTime shipmentDate, String address, String city, String county,
+                               String country, Long customerId) {
 
         Optional<Shipment> shipmentOptional = shipmentRepository.findById(shipmentId);
 
