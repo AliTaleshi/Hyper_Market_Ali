@@ -43,6 +43,10 @@ public class User {
         return userRole;
     }
 
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
     public void setUserRoleToAdmin(UserRole userRole) {
         this.userRole = userRole.ADMIN;
     }
